@@ -11,6 +11,8 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.9.0",
     "@grpc/proto-loader": "^0.7.8",
+    "dotenv": "^16.4.5",
     "web3": "^4.3.0"
-  }
+  },
+  "keywords": []
 }

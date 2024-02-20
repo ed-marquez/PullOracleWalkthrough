@@ -1,7 +1,7 @@
 /// SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity ^0.8.18;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+// import "@openzeppelin/contracts/access/Ownable.sol";
 
 interface ISupraOraclePull {
 
@@ -23,16 +23,16 @@ interface ISupraOraclePull {
 }
 
 // Mock contract which can consume oracle pull data
-contract MockOracleClient is Ownable{
+contract MockOracleClient {
     // The oracle contract
     ISupraOraclePull internal oracle;
 
-    constructor(address oracle_) Ownable(msg.sender){
+    constructor(address oracle_){
         oracle = ISupraOraclePull(oracle_);
     }
 
     // Extract price data from the bytes/proof data
-    function deliverPriceData(bytes calldata _bytesProof) external onlyOwner {
+    function deliverPriceData(bytes calldata _bytesProof) external {
     
         ISupraOraclePull.PriceData memory prices = oracle.verifyOracleProof(_bytesProof);
         
@@ -47,7 +47,7 @@ contract MockOracleClient is Ownable{
     }
 
     function updatePullAddress(address oracle_) 
-    external onlyOwner {
+    external  {
         oracle = oracle = ISupraOraclePull(oracle_);
     }
 }
