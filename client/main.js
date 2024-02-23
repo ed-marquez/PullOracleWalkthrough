@@ -15,7 +15,7 @@ const contractAddress = "0xf28c6e30b991b84d336614c1256226272380c448"; // TESTNET
 
 //Supra gRPC Server Settings
 const gRPCAddress = `${network}-dora.supraoracles.com`; // Set the gRPC server address. 'mainnet-dora.supraoracles.com' or 'testnet-dora.supraoracles.com' depending on where your contract is deployed.
-const pairIndexes = [21]; // Set the pair indexes that you wish to request/use as an array - https://supra.com/docs/data-feeds/data-feeds-index
+const pairIndexes = [75]; // Set the pair index that you wish to request/use as an array - https://supra.com/docs/data-feeds/data-feeds-index
 const chainType = "evm"; // Set the chain type (evm, sui, aptos)
 const rpcUrl = `https://${network}.hashio.io/api`;
 
@@ -62,9 +62,7 @@ async function callContract(response) {
 	//Set the name of your function that will receive the price/proof bytes.
 	//-----------------------------------------------------------------------------------------------------------------
 	const txData = contract.methods.deliverPriceData(hex).encodeABI(); // function from you contract eg: deliverPriceData
-	console.log(0);
-
-	// const gasEstimate = await contract.methods.deliverPriceData(hex).estimateGas({ from: walletAddress });
+	const gasEstimate = await contract.methods.deliverPriceData(hex).estimateGas({ from: walletAddress });
 	//-----------------------------------------------------------------------------------------------------------------
 
 	// Create the transaction object
@@ -72,18 +70,14 @@ async function callContract(response) {
 		from: walletAddress,
 		to: contractAddress,
 		data: txData,
-		// gas: gasEstimate,
-		gas: 1000000,
+		gas: gasEstimate,
 		gasPrice: await web3.eth.getGasPrice(), // Set your desired gas price here, e.g: web3.utils.toWei('1000', 'gwei')
 	};
 	// Sign the transaction with the private key
 
-	console.log(1);
 	const signedTransaction = await web3.eth.accounts.signTransaction(transactionObject, privateKey);
 	// Send the signed transaction
-	console.log(2);
 	const receipt = await web3.eth.sendSignedTransaction(signedTransaction.rawTransaction);
-	console.log(2.1);
 	console.log("Transaction receipt:", receipt);
 }
 
