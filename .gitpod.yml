@@ -7,4 +7,4 @@ tasks:
     command: |
       cp .env.SAMPLE .env
       # Make sure to replace 'YOUR_HEDERA_NETWORK_CREDENTIALS' with actual credentials or modify the setup to securely configure them.
-      echo "Enter your Hedera network credentials in the .env file for testnet/mainnet."
+      echo "Enter your Hedera network credentials in the .env file for testnet/mainnet. Then run `node main.js` from the `client` folder."
