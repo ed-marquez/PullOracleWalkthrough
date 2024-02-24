@@ -1,6 +1,6 @@
-# Supra Demo on Hedera
+# Supra Demo on Hedera - Pull
 
-This example shows how to use Supra Oracles real-world data feeds. It fetches and verifies price data from Supra's gRPC server and use it within a smart contract on the Hedera network. These are key files:
+This example shows how to use Supra Oracles real-world data feeds (Pull model). It fetches and verifies price data from Supra's gRPC server and use it within a smart contract on the Hedera network. These are key files:
 
 ## [`main.js`](./client/main.js)
 
